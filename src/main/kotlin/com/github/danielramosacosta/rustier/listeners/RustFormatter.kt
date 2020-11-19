@@ -5,15 +5,9 @@ import com.intellij.openapi.command.CommandProcessor
 import com.intellij.openapi.editor.Document
 import com.intellij.openapi.editor.DocumentRunnable
 import com.intellij.openapi.fileEditor.FileDocumentManagerListener
-import com.intellij.util.DocumentUtil
-import com.jetbrains.rd.util.string.printToString
-import java.io.BufferedReader
 import java.io.BufferedWriter
-import java.io.InputStreamReader
 import java.io.OutputStreamWriter
-import java.lang.StringBuilder
-import java.util.*
-
+import java.util.Scanner
 
 class RustFormatter : FileDocumentManagerListener {
     override fun beforeDocumentSaving(document: Document) {
@@ -22,7 +16,6 @@ class RustFormatter : FileDocumentManagerListener {
         }
 
         val data = document.text
-
 
         performUndoableWrite(object : DocumentRunnable(document, null) {
             override fun run() {
