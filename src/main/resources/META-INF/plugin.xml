@@ -8,12 +8,9 @@
     <depends>com.intellij.modules.platform</depends>
 
     <extensions defaultExtensionNs="com.intellij">
-        <applicationService serviceImplementation="com.github.danielramosacosta.rustier.services.MyApplicationService"/>
-        <projectService serviceImplementation="com.github.danielramosacosta.rustier.services.MyProjectService"/>
+        <fileDocumentManagerListener
+                id="com.github.danielramosacosta.rustier.listeners.RustFormatter"
+                implementation="com.github.danielramosacosta.rustier.listeners.RustFormatter"
+        />
     </extensions>
-
-    <applicationListeners>
-        <listener class="com.github.danielramosacosta.rustier.listeners.MyProjectManagerListener"
-                  topic="com.intellij.openapi.project.ProjectManagerListener"/>
-    </applicationListeners>
 </idea-plugin>
