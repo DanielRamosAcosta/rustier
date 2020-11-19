@@ -1,6 +1,6 @@
-package org.jetbrains.plugins.template.services
+package com.github.danielramosacosta.rustier.services
 
-import org.jetbrains.plugins.template.MyBundle
+import com.github.danielramosacosta.rustier.MyBundle
 
 class MyApplicationService {
 
