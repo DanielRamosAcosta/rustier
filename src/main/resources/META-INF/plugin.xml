@@ -9,8 +9,13 @@
 
     <extensions defaultExtensionNs="com.intellij">
         <fileDocumentManagerListener
-                id="com.github.danielramosacosta.rustier.listeners.RustFormatter"
+                id="rustier.fileDocumentManagerListener"
                 implementation="com.github.danielramosacosta.rustier.listeners.RustFormatter"
+        />
+        <projectConfigurable
+                parentId="language.rust"
+                id="rustier.settings"
+                instance="com.github.danielramosacosta.rustier.Configurer"
         />
     </extensions>
 </idea-plugin>
