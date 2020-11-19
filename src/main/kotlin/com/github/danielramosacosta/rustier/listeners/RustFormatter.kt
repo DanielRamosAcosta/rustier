@@ -17,33 +17,38 @@ class RustFormatter : FileDocumentManagerListener {
 
         val data = document.text
 
-        performUndoableWrite(object : DocumentRunnable(document, null) {
-            override fun run() {
-                val rustfmt = Runtime.getRuntime().exec("rustfmt --emit stdout")
+        performUndoableWrite(
+            object : DocumentRunnable(
+                document,
+                null
+            ) {
+                override fun run() {
+                    val rustfmt = Runtime.getRuntime().exec("rustfmt --emit stdout")
 
-                val stdin = rustfmt.outputStream
-                val stdout = rustfmt.inputStream
+                    val stdin = rustfmt.outputStream
+                    val stdout = rustfmt.inputStream
 
-                val writer = BufferedWriter(OutputStreamWriter(stdin))
+                    val writer = BufferedWriter(OutputStreamWriter(stdin))
 
-                writer.write(data)
-                writer.flush()
-                writer.close()
+                    writer.write(data)
+                    writer.flush()
+                    writer.close()
 
-                val scanner = Scanner(stdout)
-                val stringBuilder = StringBuilder()
-                while (scanner.hasNextLine()) {
-                    val message = scanner.nextLine()
-                    stringBuilder.append(message + "\n")
-                }
+                    val scanner = Scanner(stdout)
+                    val stringBuilder = StringBuilder()
+                    while (scanner.hasNextLine()) {
+                        val message = scanner.nextLine()
+                        stringBuilder.append(message + "\n")
+                    }
 
-                val final = stringBuilder.toString()
+                    val final = stringBuilder.toString()
 
-                if (final.isNotBlank()) {
-                    document.replaceString(0, data.length, final)
+                    if (final.isNotBlank()) {
+                        document.replaceString(0, data.length, final)
+                    }
                 }
             }
-        })
+        )
     }
 
     private fun performUndoableWrite(documentRunnable: DocumentRunnable) {
