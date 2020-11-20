@@ -1,6 +1,7 @@
-# Changelog
+<!-- Keep a Changelog guide -> https://keepachangelog.com -->
 
-## [1.0.0]
+# rustier Changelog
+
+## [Unreleased]
 ### Added
-- Formats on save
-- Option to set `rustfmt` path
+- Initial scaffold created from [IntelliJ Platform Plugin Template](https://github.com/JetBrains/intellij-platform-plugin-template)
