@@ -2,7 +2,7 @@ package com.github.danielramosacosta.rustier.application
 
 import com.github.danielramosacosta.rustier.domain.DocumentIO
 
-internal class DocumentIOFake(private val sourceCode: String, private val isRustFile: Boolean): DocumentIO {
+internal class DocumentIOFake(private val sourceCode: String, private val isRustFile: Boolean) : DocumentIO {
 
     private var lastWriteEntry = "Nothing writted"
 

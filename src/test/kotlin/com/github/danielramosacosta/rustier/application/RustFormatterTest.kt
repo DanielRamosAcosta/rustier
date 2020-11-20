@@ -6,13 +6,14 @@ import kotlin.test.assertEquals
 internal class RustFormatterTest {
     @Test
     fun `execute the works`() {
-        val sourceCode = """fn main  (  ){println!("Hello world!");     }"""
-        val formattedSourceCode = """
+        val sourceCode =
+            """fn main  (  ){println!("Hello world!");     }"""
+        val formattedSourceCode =
+            """
             fn main() {
                 println!("Hello world!");
             }
-        """.trimIndent()
-
+            """.trimIndent()
 
         val intellijDocument = DocumentIOFake(sourceCode, true)
         val rustfmtExecutor = RustfmtExecutorFake()

@@ -9,16 +9,16 @@ internal class RustfmtExecutorFake : RustfmtExecutor {
         if (!formattedSourceCode.isNullOrEmpty()) {
             this.formattedSourceCode = formattedSourceCode
         } else {
-            this.formattedSourceCode = """
+            this.formattedSourceCode =
+                """
                 fn main() {
                     println!("Hello world!");
                 }
-            """.trimIndent()
+                """.trimIndent()
         }
     }
 
     override fun format(input: String): String {
         return this.formattedSourceCode
     }
-
 }

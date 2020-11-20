@@ -24,8 +24,8 @@ class RustfmtExecutorExec : RustfmtExecutor {
         writer.close()
 
         val formattedSourceCode = BufferedReader(InputStreamReader(stdout))
-                .lines()
-                .collect(Collectors.joining("\n"))
+            .lines()
+            .collect(Collectors.joining("\n"))
 
         stdout.close()
 

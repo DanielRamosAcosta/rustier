@@ -13,14 +13,14 @@ class DocumentIOIntellij(private val document: Document) : DocumentIO {
 
     override fun writeDocument(text: String) {
         performUndoableWrite(
-                object : DocumentRunnable(
-                        document,
-                        null
-                ) {
-                    override fun run() {
-                        document.replaceString(0, document.textLength, text)
-                    }
+            object : DocumentRunnable(
+                document,
+                null
+            ) {
+                override fun run() {
+                    document.replaceString(0, document.textLength, text)
                 }
+            }
         )
     }
 
@@ -33,5 +33,4 @@ class DocumentIOIntellij(private val document: Document) : DocumentIO {
     override fun isNotARustFile(): Boolean = isARustFile().not()
 
     private fun isARustFile(): Boolean = document.toString().endsWith(".rs]")
-
 }

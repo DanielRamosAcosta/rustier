@@ -1,6 +1,6 @@
 package com.github.danielramosacosta.rustier.listeners
 
-import com.github.danielramosacosta.rustier.application.*
+import com.github.danielramosacosta.rustier.application.RustFormatter
 import com.github.danielramosacosta.rustier.domain.DocumentIO
 import com.github.danielramosacosta.rustier.domain.RustfmtExecutor
 import com.github.danielramosacosta.rustier.infrastructure.DocumentIOIntellij
