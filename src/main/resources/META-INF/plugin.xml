@@ -17,5 +17,6 @@
                 id="rustier.settings"
                 instance="com.github.danielramosacosta.rustier.Configurer"
         />
+        <projectService serviceImplementation="com.github.danielramosacosta.rustier.RustfmtStateService"/>
     </extensions>
 </idea-plugin>
