@@ -10,7 +10,7 @@
     <extensions defaultExtensionNs="com.intellij">
         <fileDocumentManagerListener
                 id="rustier.fileDocumentManagerListener"
-                implementation="com.github.danielramosacosta.rustier.listeners.RustFormatter"
+                implementation="com.github.danielramosacosta.rustier.listeners.RustFormatterListener"
         />
         <projectConfigurable
                 parentId="language.rust"
