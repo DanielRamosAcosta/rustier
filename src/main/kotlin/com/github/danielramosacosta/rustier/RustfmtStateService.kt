@@ -17,10 +17,8 @@ class RustfmtStateService(project: Project?) : PersistentStateComponent<RustfmtS
         var userDefinedPath: String? = null
         var runForFilesGlob: String = "{**/*}.rs"
 
-        fun getAvailablePaths(): List<String> {
-            val defaultPaths = listOf("/Users/danielramos/.cargo/bin/rustfmt")
-
-            return this.userDefinedPath?.let { listOf(it) + defaultPaths } ?: defaultPaths
+        fun getRusfmtPath(): String {
+            return userDefinedPath ?: "/Users/danielramos/.cargo/bin/rustfmt"
         }
     }
 
@@ -38,7 +36,7 @@ class RustfmtStateService(project: Project?) : PersistentStateComponent<RustfmtS
         this.state.userDefinedPath = rustFmtPath
     }
 
-    fun getRustfmtAvailablePaths(): List<String> {
-        return state.getAvailablePaths()
+    fun getRusfmtPath(): String {
+        return state.getRusfmtPath()
     }
 }

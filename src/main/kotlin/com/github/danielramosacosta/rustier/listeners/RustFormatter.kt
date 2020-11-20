@@ -1,16 +1,22 @@
 package com.github.danielramosacosta.rustier.listeners
 
+import com.github.danielramosacosta.rustier.RustfmtStateService
 import com.intellij.openapi.application.ApplicationManager
 import com.intellij.openapi.command.CommandProcessor
 import com.intellij.openapi.editor.Document
 import com.intellij.openapi.editor.DocumentRunnable
 import com.intellij.openapi.fileEditor.FileDocumentManagerListener
+import com.intellij.openapi.project.ProjectManager
 import java.io.BufferedWriter
 import java.io.OutputStreamWriter
 import java.util.Scanner
 
 class RustFormatter : FileDocumentManagerListener {
     override fun beforeDocumentSaving(document: Document) {
+        val project = ProjectManager.getInstance().openProjects.first()
+        val rustfmtStateService = RustfmtStateService.getInstance(project)
+        val rustFmtPath = rustfmtStateService.getRusfmtPath()
+
         if (!document.toString().contains(".rs")) {
             return super.beforeDocumentSaving(document)
         }
@@ -23,7 +29,7 @@ class RustFormatter : FileDocumentManagerListener {
                 null
             ) {
                 override fun run() {
-                    val rustfmt = Runtime.getRuntime().exec("rustfmt --emit stdout")
+                    val rustfmt = Runtime.getRuntime().exec("$rustFmtPath --emit stdout")
 
                     val stdin = rustfmt.outputStream
                     val stdout = rustfmt.inputStream

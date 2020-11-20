@@ -6,8 +6,9 @@ import javax.swing.JComponent
 
 class Configurer(private val project: Project) : Configurable {
 
-    val settingsPanel: SettingsPanel by lazy {
-        val settingsStateService = RustfmtStateService.getInstance(project)
+    private var settingsStateService = RustfmtStateService.getInstance(project)
+
+    private val settingsPanel: SettingsPanel by lazy {
         println("I have the super service ${settingsStateService.state.userDefinedPath}")
         SettingsPanel(settingsStateService)
     }
@@ -24,6 +25,7 @@ class Configurer(private val project: Project) : Configurable {
 
     override fun apply() {
         print("[apply] TODO xd")
+        settingsStateService.setCustomUserPath(settingsPanel.getUserDefinedPath())
     }
 
     override fun createComponent(): JComponent? {
