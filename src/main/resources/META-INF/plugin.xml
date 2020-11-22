@@ -19,4 +19,15 @@
         />
         <projectService serviceImplementation="com.github.danielramosacosta.rustier.RustfmtStateService"/>
     </extensions>
+    <actions>
+        <action id="com.github.danielramosacosta.rustier.actions.ReformatWithRustfmtAction"
+                class="com.github.danielramosacosta.rustier.actions.ReformatWithRustfmtAction"
+                text="Reformat with rustfmt" description="Reformat with rustfmt">
+            <add-to-group group-id="EditorPopupMenu" anchor="last"/>
+            <add-to-group group-id="ProjectViewPopupMenu" anchor="last"/>
+            <keyboard-shortcut keymap="$default" first-keystroke="shift meta alt P"/>
+            <keyboard-shortcut keymap="Mac OS X" first-keystroke="meta alt shift P"/>
+            <keyboard-shortcut keymap="Mac OS X 10.5+" first-keystroke="meta alt shift P"/>
+        </action>
+    </actions>
 </idea-plugin>
