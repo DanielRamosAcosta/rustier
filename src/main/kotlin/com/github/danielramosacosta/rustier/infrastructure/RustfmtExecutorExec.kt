@@ -2,14 +2,14 @@ package com.github.danielramosacosta.rustier.infrastructure
 
 import com.github.danielramosacosta.rustier.RustfmtStateService
 import com.github.danielramosacosta.rustier.domain.RustfmtExecutor
-import com.intellij.openapi.project.ProjectManager
+import com.intellij.openapi.project.Project
 import java.io.BufferedReader
 import java.io.BufferedWriter
 import java.io.InputStreamReader
 import java.io.OutputStreamWriter
 import java.util.stream.Collectors
 
-class RustfmtExecutorExec : RustfmtExecutor {
+class RustfmtExecutorExec(private val project: Project) : RustfmtExecutor {
     override fun format(sourceCode: String): String {
         val rustFmtPath = getRustFmtPath()
 
@@ -33,7 +33,6 @@ class RustfmtExecutorExec : RustfmtExecutor {
     }
 
     private fun getRustFmtPath(): String {
-        val project = ProjectManager.getInstance().openProjects.first()
         val rustfmtStateService = RustfmtStateService.getInstance(project)
         return rustfmtStateService.getRusfmtPath()
     }
