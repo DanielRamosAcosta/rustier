@@ -4,4 +4,8 @@
 
 ## [Unreleased]
 ### Added
-- Initial scaffold created from [IntelliJ Platform Plugin Template](https://github.com/JetBrains/intellij-platform-plugin-template)
+- Format on save by default (pending to add option to enable this)
+- Add action to reformat
+- Configurable rustfmt path
+- Add new icon
+
