@@ -37,6 +37,8 @@ group = pluginGroup
 version = pluginVersion
 
 // Configure project's dependencies
+
+
 repositories {
     mavenCentral()
     jcenter()
@@ -56,6 +58,7 @@ intellij {
 
     // Plugin Dependencies. Uses `platformPlugins` property from the gradle.properties file.
     setPlugins(*platformPlugins.split(',').map(String::trim).filter(String::isNotEmpty).toTypedArray())
+
 }
 
 // Configure detekt plugin.
@@ -71,7 +74,25 @@ detekt {
     }
 }
 
+sourceSets {
+    main {
+        java {
+            setSrcDirs(listOf("src", "gen"))
+        }
+        resources {
+            setSrcDirs(listOf("resources"))
+        }
+    }
+    test {
+        java {
+            setSrcDirs(listOf("test"))
+        }
+    }
+}
+
+
 tasks {
+
     // Set the compatibility versions to 1.8
     withType<JavaCompile> {
         sourceCompatibility = "1.8"
@@ -82,7 +103,10 @@ tasks {
             kotlinOptions.jvmTarget = "1.8"
         }
     }
-
+    test {
+        println(File("${projectDir}/../").absolutePath)
+        systemProperty("idea.home.path", File("${projectDir}/../").absolutePath)
+    }
     withType<Detekt> {
         jvmTarget = "1.8"
     }
